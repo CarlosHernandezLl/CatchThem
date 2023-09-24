@@ -17,13 +17,6 @@ public class RoleController {
     @Autowired
     private IRoleService rS;
 
-    @PostMapping
-    @PreAuthorize("hasAuthority('ADMIN')")
-    public void registrar(@RequestBody RoleDTO roleDTO){
-        ModelMapper m= new ModelMapper();
-        Role r = m.map(roleDTO,Role.class);
-        rS.ingresar(r);
-    }
     @GetMapping
     @PreAuthorize("hasAuthority('ADMIN')")
     public List<RoleDTO> listar(){

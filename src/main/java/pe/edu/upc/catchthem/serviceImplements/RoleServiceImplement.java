@@ -15,11 +15,6 @@ public class RoleServiceImplement implements IRoleService{
     private RoleRepository rR;
 
     @Override
-    public void ingresar(Role role) {
-        rR.save(role);
-    }
-
-    @Override
     public List<Role> listar() {
         return rR.findAll();
     }
