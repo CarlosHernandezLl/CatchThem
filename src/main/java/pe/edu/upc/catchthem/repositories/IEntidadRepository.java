@@ -25,6 +25,6 @@ public interface IEntidadRepository extends JpaRepository<Entidad,Integer> {
     @Query(value = "select e.nombre, te.sector, count(c.id_camara)  from entidad e " +
             " join camara c on e.id_entidad = c.id_entidad" +
             " join tipo_entidad te on e.Id_tipo = te.Id_tipo" +
-            " group by e.nombre" ,nativeQuery = true)
+            " group by e.nombre, te.sector" ,nativeQuery = true)
     public List<String[]> cantidadCamarasporEntidad();
 }
