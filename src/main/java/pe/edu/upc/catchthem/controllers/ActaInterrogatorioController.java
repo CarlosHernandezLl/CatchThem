@@ -37,7 +37,7 @@ public class ActaInterrogatorioController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void eliminar(@PathVariable("id") Integer id){
         aS.eliminar(id);
     }

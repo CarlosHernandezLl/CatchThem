@@ -38,13 +38,13 @@ public class AntecedentePenalController {
         }).collect(Collectors.toList());
     }
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public void eliminar(@PathVariable("id") Integer id){
         aS.eliminar(id);
     }
 
     @GetMapping("/DelitoPorAntecedente")
-    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('ADMIN') or hasAuthority('POLICIA')")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('POLICIA')")
     public List<AntecedentesPorDelitoDTO> AntecedentesPorDelito(){
         List<String[]> lista = aS.antecedentesPorDelito();
         List<AntecedentesPorDelitoDTO>listadto=new ArrayList<>();
