@@ -60,7 +60,7 @@ public class SospechosoController {
     }
 
     @PostMapping("/buscarfecha")
-    @PreAuthorize("hasRole('POLICIA') or hasRole('AGENTE')")
+    @PreAuthorize("hasAuthority('ADMIN') or hasRole('POLICIA') or hasRole('AGENTE')")
     public List<SospechosoDTO> buscarfecha(@RequestParam String fecha){
         LocalDate localDate = LocalDate.parse(fecha);
         return iSospechosoService.findSospechosoByFecharegistro(localDate).stream().map(x->{
@@ -70,7 +70,7 @@ public class SospechosoController {
     }
 
     @GetMapping("/id")
-    @PreAuthorize("hasRole('POLICIA') or hasRole('AGENTE')")
+    @PreAuthorize("hasAuthority('ADMIN') or hasRole('POLICIA') or hasRole('AGENTE')")
     public SospechosoDTO buscarporid(@RequestParam("id") Integer id){
         ModelMapper m = new ModelMapper();
         SospechosoDTO s = m.map(iSospechosoService.findSospechosoByIdSospechoso(id),SospechosoDTO.class);

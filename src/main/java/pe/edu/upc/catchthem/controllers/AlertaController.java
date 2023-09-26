@@ -23,7 +23,7 @@ public class AlertaController {
     private IAlertaService alertaService;
 
     @PostMapping
-    @PreAuthorize("hasAuthority('POLICIA') or hasAuthority('AGENTE')")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('POLICIA') or hasAuthority('AGENTE')")
     public void ingresar(@RequestBody AlertaDTO alertaDTO){
         ModelMapper m=new ModelMapper();
         Alerta alerta=m.map(alertaDTO,Alerta.class);
@@ -31,7 +31,7 @@ public class AlertaController {
     }
 
     @GetMapping
-    @PreAuthorize("hasAuthority('POLICIA') or hasAuthority('AGENTE')")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('POLICIA') or hasAuthority('AGENTE')")
     public List<AlertaDTO> listar(){
         return alertaService.listar().stream().map(x->{
             ModelMapper m= new ModelMapper();
@@ -40,7 +40,7 @@ public class AlertaController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('ADMIN')")
     public void eliminar(@PathVariable("id") Integer id){
         alertaService.eliminar(id);
     }

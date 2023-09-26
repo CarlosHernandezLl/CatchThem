@@ -19,14 +19,14 @@ import java.util.stream.Collectors;
         private ICamaraService cS;
 
         @PostMapping
-        @PreAuthorize("hasAuthority('POLICIA') or hasRole('AGENTE')")
+        @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('POLICIA') or hasRole('AGENTE')")
         public void registrar(@RequestBody CamaraDTO camaraDTO){
             ModelMapper m= new ModelMapper();
             Camara c = m.map(camaraDTO,Camara.class);
             cS.insertar(c);
         }
         @GetMapping
-        @PreAuthorize("hasAuthority('AGENTE') or hasAuthority('POLICIA')")
+        @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('AGENTE') or hasAuthority('POLICIA')")
         public List<CamaraDTO> listar(){
             return cS.listar().stream().map(x->{
                 ModelMapper m = new ModelMapper();
