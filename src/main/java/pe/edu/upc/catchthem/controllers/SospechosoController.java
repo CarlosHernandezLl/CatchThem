@@ -29,7 +29,7 @@ public class SospechosoController {
     private ISospechosoService iSospechosoService;
 
     @PostMapping
-    @PreAuthorize("hasRole('POLICIA')or hasRole('AGENTE')")
+    @PreAuthorize("hasAuthority('ADMIN') or hasRole('POLICIA')or hasRole('AGENTE')")
     public void registrar(@RequestBody SospechosoDTO sospechosoDTO){
         ModelMapper m= new ModelMapper();
         Sospechoso ap = m.map(sospechosoDTO, Sospechoso.class);
@@ -37,7 +37,7 @@ public class SospechosoController {
     }
 
     @PutMapping
-    @PreAuthorize("hasAuthority('POLICIA')or hasAuthority('AGENTE')")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('POLICIA')or hasAuthority('AGENTE')")
     public void modificar(@RequestBody SospechosoDTO sospechosoDTO){
         ModelMapper m= new ModelMapper();
         Sospechoso ap = m.map(sospechosoDTO, Sospechoso.class);
