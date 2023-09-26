@@ -20,7 +20,7 @@ public class EntidadServiceImplement implements IEntidadService {
 
     @Override
     public void delete(int id) {
-        iEntidadRepository.deleteByIdEntidad(id);
+        iEntidadRepository.deleteById(id);
     }
 
     @Override
